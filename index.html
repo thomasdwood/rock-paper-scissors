@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        var playerScore = 0
+        var computerScore = 0
+        var ties = 0
+
+        function computerPlay() {
+            var play = Math.floor(Math.random() * 3)
+
+            switch (play) {
+                case 0: 
+                    return "rock";
+                    break;
+                case 1: 
+                    return "paper";
+                    break;
+                case 2: 
+                    return "scissors";
+                    break;
+                default: 
+                    break;
+            }
+
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            var win = false;
+            if (playerSelection == null) {
+                computerScore++;
+                return "Invalid entry. You forfiet!";
+            }
+
+            if (playerSelection.toLowerCase() == computerSelection) {
+                ties++
+                return "Its a tie!";
+            }
+
+            switch (playerSelection.toLowerCase()) {
+                case "rock":
+                    if (computerSelection == "scissors") {
+                        win = true;
+                    }
+                    break;
+                case "paper":
+                    if (computerSelection == "rock") {
+                        win = true;
+                    }
+                    break;
+                case "scissors": 
+                    if (computerSelection == "paper") {
+                        win = true;
+                    }
+                    break;
+                default: 
+                    computerScore++;
+                    return "Invalid entry. You forfeit!"
+                    break;
+                }
+            if (win == true) {
+                playerScore++
+                return "You win: " + playerSelection.toLowerCase() + " beats " + computerSelection;
+
+            } else {
+                computerScore++
+                return "You lose: " + computerSelection + " beats " + playerSelection.toLowerCase();
+            }
+
+               
+        }
+
+        function game() {
+            for (i = 0; i < 5; i++) {
+                const playerSelection = prompt("Rock, Paper or Scissors?");
+                const computerSelection = computerPlay();
+                const roundResult = "Round " + (i + 1) + ": " + playRound(playerSelection, computerSelection);
+                console.log(roundResult);
+            }
+
+            console.log("Final Score - Player: " + playerScore + ", Computer: " + computerScore);
+            if (playerScore > computerScore) {
+                console.log("Hooray! You are the champion!");
+            } else if (playerScore < computerScore) {
+                console.log("Aw shucks. Computer won. Better luck next time.");
+            } else if (playerScore == computerScore) {
+                console.log("WTF? A Tie? How did that happen?");
+            }
+
+        }
+
+        game()
+
+
+    </script>
+</html>
