@@ -1,95 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <script>
-        var playerScore = 0
-        var computerScore = 0
-        var ties = 0
+    <head>
+        <meta charset="utf-8">
+        <meta lang="eng">
+        <link href="styles/reset.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=B612" rel="stylesheet">
+        <link href="styles/style.css" rel="stylesheet" type="text/css">
+    
+        <title>Rock, Paper, Scissors</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <h1>Rock, Paper, Scissors!</h1>
+                <p>Paper beats Rock, Rock beats Scissors, Scissors beats Paper.</p>
+            </div>
+            <div id="buttons">
+                <h2>Choose your Weapon!</h2>
+                <div id="choices">
+                    <button id="rock">💎</button>
+                    <button id="paper">📄</button>
+                    <button id="scissors">✂️</button>
+                </div>
+                
+            </div>
+            <div id="currentRound">
+                <h2 id="round">Round: 0</h2>
+                <h4 id="roundResult">&nbsp;</h4>
+                <div id="playerRound" class="displayChoice">
+                    <h3>Player's Choice</h3>
+                    <div class="weapon"></div>
+                    <h4></h4>
+                </div>
+                <div id="computerRound" class="displayChoice">
+                    <h3>Computer's Choice</h3>
+                    <div class="weapon"></div>
+                    <h4></h4>
+                </div>
+                
+            </div>
+            <div id="footer">
+                <div class="footerDiv">Player: 0</div>
+                <div class="footerDiv">Computer: 0</div>
+                <div class="footerDiv">Ties: 0</div>
+                <div class="footerDiv">
+                    <button id="reset">Reset</button>
+                </div>
+            </div>
+        </div>
 
-        function computerPlay() {
-            var play = Math.floor(Math.random() * 3)
-
-            switch (play) {
-                case 0: 
-                    return "rock";
-                    break;
-                case 1: 
-                    return "paper";
-                    break;
-                case 2: 
-                    return "scissors";
-                    break;
-                default: 
-                    break;
-            }
-
-        }
-
-        function playRound(playerSelection, computerSelection) {
-            var win = false;
-            if (playerSelection == null) {
-                computerScore++;
-                return "Invalid entry. You forfiet!";
-            }
-
-            if (playerSelection.toLowerCase() == computerSelection) {
-                ties++
-                return "Its a tie!";
-            }
-
-            switch (playerSelection.toLowerCase()) {
-                case "rock":
-                    if (computerSelection == "scissors") {
-                        win = true;
-                    }
-                    break;
-                case "paper":
-                    if (computerSelection == "rock") {
-                        win = true;
-                    }
-                    break;
-                case "scissors": 
-                    if (computerSelection == "paper") {
-                        win = true;
-                    }
-                    break;
-                default: 
-                    computerScore++;
-                    return "Invalid entry. You forfeit!"
-                    break;
-                }
-            if (win == true) {
-                playerScore++
-                return "You win: " + playerSelection.toLowerCase() + " beats " + computerSelection;
-
-            } else {
-                computerScore++
-                return "You lose: " + computerSelection + " beats " + playerSelection.toLowerCase();
-            }
-
-               
-        }
-
-        function game() {
-            for (i = 0; i < 5; i++) {
-                const playerSelection = prompt("Rock, Paper or Scissors?");
-                const computerSelection = computerPlay();
-                const roundResult = "Round " + (i + 1) + ": " + playRound(playerSelection, computerSelection);
-                console.log(roundResult);
-            }
-
-            console.log("Final Score - Player: " + playerScore + ", Computer: " + computerScore);
-            if (playerScore > computerScore) {
-                console.log("Hooray! You are the champion!");
-            } else if (playerScore < computerScore) {
-                console.log("Aw shucks. Computer won. Better luck next time.");
-            } else if (playerScore == computerScore) {
-                console.log("WTF? A Tie? How did that happen?");
-            }
-
-        }
-
-        game()
-
-
-    </script>
+ 
+        <script type="text/javascript" src="scripts/main.js"></script>        
+    </body>
 </html>
